@@ -7,6 +7,7 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     protected View view;
+    private boolean isRed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,10 +15,23 @@ public class MainActivity extends AppCompatActivity {
 
         //variable construction
         view = this.getWindow().getDecorView();
+        view.setBackgroundResource(R.color.colorPrimary);
+        isRed=false;
+
     }
 
     public void makeBackgroundRed(View v){
-        view.setBackgroundResource(R.color.red);
-        v.setBackgroundResource(R.color.red);
+        if(isRed){
+            isRed=false;
+            view.setBackgroundResource(R.color.colorPrimary);
+
+        }
+        else{
+            isRed=true;
+            view.setBackgroundResource(R.color.red);
+
+        }
+
+
     }
 }
