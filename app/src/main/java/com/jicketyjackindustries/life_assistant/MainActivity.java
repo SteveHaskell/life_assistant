@@ -1,18 +1,21 @@
 package com.jicketyjackindustries.life_assistant;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
 /*
 This has become an experimentation class for trying out different things in Android Studio
  */
 public class MainActivity extends AppCompatActivity {
 
     protected View view;
-    private boolean isRed;
-    private boolean isBlue;
-    private boolean isGreen;
+    private BackgroundColorFlipper bcf;
+    private boolean task1Complete = false;
+    private SharedPreferences mPrefs;
+    private SharedPreferences.Editor mEditor;
 
     /*
     replaces a constructor, do everything you want to do do on app startup here
@@ -20,64 +23,51 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mPrefs = getSharedPreferences("label", 0);
+        mEditor = mPrefs.edit();
+
+
         setContentView(R.layout.activity_main);
 
         //variable construction
         view = this.getWindow().getDecorView();
-        view.setBackgroundResource(R.color.colorPrimary);
+        if(mPrefs.getBoolean("task1", true))
+            view.setBackgroundResource(R.color.blue);
+
+        bcf = new BackgroundColorFlipper(view);
 
         Context context;
         context = this.getApplicationContext();
         view.setOnTouchListener(new OnSwipeTouchListener(context) {
             @Override
             public void onSwipeLeft() {
-                flipBackgroundBlue();
+                bcf.flipBackgroundBlue();
             }
             @Override
             public void onSwipeRight(){
-                flipBackgroundGreen();
+                bcf.flipBackgroundGreen();
             }
             @Override
             public void onSwipeUp(){
-                flipBackgroundRed();
+                bcf.flipBackgroundRed();
             }
         });
-        isRed=false;
-        isBlue=false;
-        isGreen=false;
 
     }
 
+    public void redButton(View v){
+        bcf.flipBackgroundRed();
+    }
 
-    private void flipBackgroundRed(){
-        if(isRed){
-            isRed=false;
-            view.setBackgroundResource(R.color.colorPrimary);
-        }
-        else{
-            isRed=true;
-            view.setBackgroundResource(R.color.red);
-        }
-    }
-    private void flipBackgroundBlue(){
-        if(isBlue){
-            isBlue=false;
-            view.setBackgroundResource(R.color.colorPrimary);
-        }
-        else{
-            isBlue=true;
-            view.setBackgroundResource(R.color.blue);
-        }
-    }
-    private void flipBackgroundGreen(){
-        if(isGreen){
-            isGreen=false;
-            view.setBackgroundResource(R.color.colorPrimary);
-        }
-        else{
-            isGreen=true;
-            view.setBackgroundResource(R.color.green);
-        }
+    public void taskButton1(View v){
+        if(!task1Complete)
+            v.setBackgroundResource(R.color.green);
+        else
+            v.setBackgroundResource(R.color.colorPrimary);
+
+        task1Complete = !task1Complete;
+        mEditor.putBoolean("task1",task1Complete);
     }
 
     private void wait(int t){
