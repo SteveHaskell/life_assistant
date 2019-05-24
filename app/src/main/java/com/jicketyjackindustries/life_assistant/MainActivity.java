@@ -8,15 +8,17 @@ import android.view.View;
 
 /*
 This has become an experimentation class for trying out different things in Android Studio
+In this file, now legacy, you will find examples of switching layouts, changing button colors,
+saving data and other tricks
  */
 public class MainActivity extends AppCompatActivity {
 
     protected View view;
     private BackgroundColorFlipper bcf;
     private boolean task1Complete = false;
-    private SharedPreferences mPrefs;
-    private SharedPreferences.Editor mEditor;
-
+    private SharedPreferences settings;
+    private SharedPreferences.Editor editor;
+    public static final String  PREFS_NAME = "MyPrefsFile";
     /*
     replaces a constructor, do everything you want to do do on app startup here
      */
@@ -24,18 +26,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mPrefs = getSharedPreferences("label", 0);
-        mEditor = mPrefs.edit();
-
 
         setContentView(R.layout.activity_main);
 
         //variable construction
         view = this.getWindow().getDecorView();
-        if(mPrefs.getBoolean("task1", true))
-            view.setBackgroundResource(R.color.blue);
-
         bcf = new BackgroundColorFlipper(view);
+        //attempt to get button view
+        View buttonView;
+        buttonView = this.findViewById(R.id.button2);
+
+        // preference saving!
+        settings = getSharedPreferences(PREFS_NAME,0);
+        editor = settings.edit();
+        if(settings.getBoolean("task1",false))
+            buttonView.setBackgroundResource(R.color.red);
 
         Context context;
         context = this.getApplicationContext();
@@ -71,7 +76,10 @@ public class MainActivity extends AppCompatActivity {
             v.setBackgroundResource(R.color.colorPrimary);
 
         task1Complete = !task1Complete;
-        mEditor.putBoolean("task1",task1Complete);
+
+        editor.putBoolean("task1",task1Complete);
+        editor.commit();
+
     }
 
     private void wait(int t){
