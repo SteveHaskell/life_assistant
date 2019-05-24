@@ -58,8 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void redButton(View v){
         bcf.flipBackgroundRed();
+        setContentView(R.layout.activity_main2);
     }
 
+    public void activityTwoButton(View v){
+        setContentView(R.layout.activity_main);
+    }
     public void taskButton1(View v){
         if(!task1Complete)
             v.setBackgroundResource(R.color.green);
