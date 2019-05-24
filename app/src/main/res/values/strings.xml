@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">life_assistant</string>
     <string name="makeRedButton">RED</string>
+    <string name="title1">Day Type: Fatigued</string>
+    <string name="task0">measure blood pressure</string>
+    <string name="task1">take Amlodipine </string>
+    <string name="task2"> stay hydrated </string>
+    <string name="task3"> light exercise </string>
+    <string name="task4"> play with Thomas </string>
+    <string name="task5"> play with Jonathan </string>
+    <string name="task6"> 3 meals, 2 snacks </string>
+    <string name="task7"> walk toward vegetarianism</string>
 </resources>
