@@ -34,15 +34,15 @@ public class MainActivityReference extends AppCompatActivity {
         bcf = new BackgroundColorFlipper(view);
         //attempt to get button view
         View buttonView;
-        buttonView = this.findViewById(R.id.button1);
+        //buttonView = this.findViewById(R.id.button1);
 
         // preference saving!
         settings = getSharedPreferences(PREFS_NAME,0);
         editor = settings.edit();
-        if(settings.getBoolean("task1",false))
-            buttonView.setBackgroundResource(R.color.blue);
-        else
-            buttonView.setBackgroundResource(R.color.colorPrimary);
+        //if(settings.getBoolean("task1",false))
+            //buttonView.setBackgroundResource(R.color.blue);
+        //else
+            //buttonView.setBackgroundResource(R.color.colorPrimary);
 
         Context context;
         context = this.getApplicationContext();

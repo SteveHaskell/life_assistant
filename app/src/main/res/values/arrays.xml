@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+<string-array name="fatigue_day_task_list">
+    <item>take Amlodipine</item>
+    <item>check Blood Pressure morning</item>
+    <item>brush, floss teeth morning</item>
+    <item>quality time with Jonathan</item>
+    <item>quality time with Thomas</item>
+    <item>mindfully eat breakfast </item>
+    <item>lots of water morning</item>
+    <item>mindfully eat snack 1 </item>
+    <item>mindfully eat lunch </item>
+    <item>mindfully eat snack 2 </item>
+    <item>mindfully eat dinner </item>
+    <item>lots of water evening</item>
+    <item>check Blood Pressure evening</item>
+    <item>meditate 10 minutes</item>
+    <item>listen to audio book 30 min</item>
+    <item>light stretching </item>
+    <item>brush, floss teeth evening</item>
+
+</string-array>
+
+</resources>
